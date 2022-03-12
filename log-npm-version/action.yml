@@ -1,0 +1,18 @@
+name: Log npm version
+description: A GitHub action that logs npm version
+inputs:
+  node-version:
+    description: The version of node to install
+    default: 12.x
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ inputs.node-version }}
+    - run: npm -v
+      shell: bash
